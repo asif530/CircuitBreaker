@@ -1,0 +1,13 @@
+create table dept (department_id bigint not null,
+                    department_address varchar(255),
+                    department_code varchar(255),
+                    department_name varchar(255),
+primary key (department_id))
+
+POST payload
+http://localhost:9001/dept/save
+{
+    "departmentName":"CSE",
+    "departmentAddress":"MIST",
+    "departmentCode":"2014"
+}

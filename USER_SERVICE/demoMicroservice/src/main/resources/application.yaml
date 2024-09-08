@@ -1,0 +1,33 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: USER-SERVICE
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    #SBM: Spring Boot Microservice
+  datasource:
+    url: jdbc:sqlserver://DESKTOP-PGJNFJ5\SQLSERVER2017;databaseName=SBM
+    username: sa
+    password: s@1234
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+#    hostname: DESKTOP-PGJNFJ5
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+logging:
+  level:
+    org.springframework.cloud.commons.util.InetUtils: trace
+
+

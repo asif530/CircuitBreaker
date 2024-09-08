@@ -1,0 +1,9 @@
+Project Source code
+https://github.com/shabbirdwd53/Springboot-Microservice
+
+1. Never use reserve table names of database.A workaround is using string literals. [``]
+https://stackoverflow.com/questions/25502454/org-springframework-beans-notreadablepropertyexception-invalid-property-user/25504810#25504810
+
+2. To use GenerationType.IDENTITY make the column in the as identity. If not error will occur.
+
+

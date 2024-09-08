@@ -1,0 +1,18 @@
+Project Source code
+https://github.com/shabbirdwd53/Springboot-Microservice
+
+1. Never use reserve table names of database.A workaround is using string literals. [``]
+https://stackoverflow.com/questions/25502454/org-springframework-beans-notreadablepropertyexception-invalid-property-user/25504810#25504810
+
+2. To use GenerationType.IDENTITY make the column in the as identity. If not error will occur.
+
+3. Error: Java: invalid target release: 11 - IntelliJ IDEA
+   Error: Java: invalid source release: 11 - IntelliJ IDEA
+https://stackoverflow.com/questions/54137286/error-java-invalid-target-release-11-intellij-idea
+
+4.Failed to introspect Class [org.springframework.cloud.context.properties.ConfigurationPropertiesBeans
+https://stackoverflow.com/questions/65488101/springboot-upgrade-from-2-3-5-release-to-2-4-1-classnotfoundexception-org-spri
+https://stackoverflow.com/questions/70510490/dependency-mismatch-between-spring-boot-and-spring-cloud
+Eureka client and server depends on spring boot version. There is a compatibility between springboot version and eureka client/server version.
+The compatible version list can be found here:
+https://spring.io/projects/spring-cloud

@@ -1,0 +1,14 @@
+create table [user]
+([user_id] bigint not null IDENTITY(1,1),
+department_id bigint, email varchar(255),
+first_name varchar(255), last_name varchar(255),
+primary key (user_id))
+
+POST payload
+http://localhost:9002/users/save
+{
+    "firstName": "asif",
+    "lastName": "kamal",
+    "email": "asifkamal530@gmail.com",
+    "departmentId": 1
+}
