@@ -17,9 +17,9 @@ public class DemoMicroserviceApplication {
 		SpringApplication.run(DemoMicroserviceApplication.class, args);
 	}
 
-	/*@Bean
+	@Bean
 	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
-	}*/
+	}
 }

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class FallBackController {
     @GetMapping("/userCircuitBreaker")
 
-    public ResponseEntity<String> userCircuitBreaker(Exception e){
+    public ResponseEntity<String> userCircuitBreaker(){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("We are facing a problem in user. Please contact helpdesk");
     }
 
     @GetMapping("/deptCircuitBreaker")
-    public ResponseEntity<String> deptCircuitBreaker(Exception e){
+    public ResponseEntity<String> deptCircuitBreaker(){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("We are facing a problem in department. Please contact helpdesk");
     }

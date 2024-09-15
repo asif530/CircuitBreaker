@@ -1,6 +1,5 @@
 server:
   port: 9191
-
 spring:
   application:
     name: API-GATEWAY
@@ -11,6 +10,7 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
+            - Method=GET,POST,PUT,DELETE
           filters:
             - name: CircuitBreaker
               args:
@@ -20,6 +20,7 @@ spring:
           uri: lb://DEPARTMENT-SERVICE
           predicates:
               - Path=/dept/**
+              - Method=GET,POST,PUT,DELETE
           filters:
             - name: CircuitBreaker
               args:
@@ -38,25 +39,41 @@ eureka:
     prefer-ip-address: true
     ip-address: 127.0.0.1
 management:
+  health:
+    circuitbreakers:
+      enabled: true
   endpoints:
     web:
       exposure:
-        include: ['*','circuitbreakers']
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
 
 resilience4j:
   circuitbreaker:
     configs:
       default:
         registerHealthIndicator: true
+        sliding-window-type: COUNT_BASED
         slidingWindowSize: 10
         failureRateThreshold: 50
         waitDurationInOpenState: 5s
         permittedNumberOfCallsInHalfOpenState: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        minimum-number-of-calls: 5
+  timelimiter:
+    configs:
+      default:
+        timeout-duration:
+          3s
     instances:
       userCircuitBreaker:
         base-config: default
       deptCircuitBreaker:
         base-config: default
+
 logging:
   level:
 #    org.springframework.cloud.commons.util.InetUtils: trace
@@ -64,5 +81,8 @@ logging:
     org.springframework.cloud.gateway: debug
     io.github.resilience4j: debug
 
+#https://medium.com/@mahmoud.romeh/spring-cloud-gateway-with-resilience4j-circuit-breaker-4f46d86822f0
+#https://programmingtechie.com/
+#https://dip-mazumder.medium.com/best-practices-for-error-handling-a-guide-to-circuit-breaker-patterns-41d45ffc02ac
 
 

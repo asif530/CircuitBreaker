@@ -19,24 +19,28 @@ public class UserService {
     private RestTemplate restTemplate;
 
     private static String DeptUrl = "http://localhost:9001/dept/";
-    private static String DeptUrlEureka = "http://DEPARTMENT-SERVICE/dept/";
+    private static String DeptUrlEureka = "http://localhost:9191/dept/";
+    private static String DeptUrlEureka1 = "http://DEPARTMENT-SERVICE/dept/"; //successful in rest template. According to Chatgpt it is going straight to eureka not in api-gateway
+
+    private static String ApiGatewayDeptUrl = "http://API-GATEWAY/dept/"; //This url will hit api gateway. From api gateway it will find department service url.
 
     public User saveUser(User user) {
         log.info("Inside saveUser of UserService");
         return userRepository.save(user);
     }
 
+    //@CircuitBreaker(name = "deptServiceCircuitBreaker", fallbackMethod = "fallbackMethod")
     public ResponseTemplateHelper getUserWithDepartment(Long userId) {
         log.info("Inside getUserWithDepartment of UserService");
         ResponseTemplateHelper vo = new ResponseTemplateHelper();
         User user = userRepository.findByUserId(userId);
-
+        String url = ApiGatewayDeptUrl + 1;
         Department department =
-                restTemplate.getForObject(DeptUrlEureka + 1
-                        ,Department.class);
+                restTemplate.getForObject(url, Department.class);
 
         vo.setUser(user);
         vo.setDepartment(department);
+        //ResponseEntity<String> response = restTemplate.getForEntity(DeptUrlEureka1, String.class);
 
         return  vo;
     }
